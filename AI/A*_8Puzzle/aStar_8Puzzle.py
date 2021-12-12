@@ -75,7 +75,7 @@ class Puzzle:
     def printMat(self, cur, count):
 
         print("\033c", end="")
-        print(Fore.RED + "8-puzzle Problem using Heuristic Search and Manhattan distance\n" + Fore.RESET)
+        print(Fore.GREEN + "8-puzzle Problem using Heuristic Search and Manhattan distance\n" + Fore.RESET)
         for i in cur.data:
             for j in i:
                 if j == '_':
