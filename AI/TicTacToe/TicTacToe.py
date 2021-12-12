@@ -89,7 +89,6 @@ def compMove():
 
     return move
 
-
 def selectRandom(li):
     import random
     ln = len(li)
