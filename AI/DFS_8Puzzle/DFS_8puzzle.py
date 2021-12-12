@@ -16,43 +16,43 @@ class Graph:
             return False
         
         for i in self.graph[src]:
-            if self.search(i,target,maxDepth-1):
+            if self.search(i, target, maxDepth-1):
                 return True
         
         return False
 
     def iterativeSearch(self,src,target,maxDepth):
         for i in range(maxDepth):
-            if self.search(src,target,i):
+            if self.search(src, target, i):
                 return True
         
         return False
 
 if __name__ == "__main__":
-    print("Enter number of vertex: ",end="")
+    print("Enter number of vertex: ", end="")
     n = int(input())
 
     g = Graph(n)
 
-    print("Enter no of edges: ",end="")
+    print("Enter no of edges: ", end="")
     noOfEdge = int(input())
 
     print("Enter edges: ")
 
     for i in range(noOfEdge):
         edge = list(map(int, input().split(" ")))
-        g.addEdge(edge[0],edge[1])
+        g.addEdge(edge[0] ,edge[1])
 
-    print("Enter src vertex: ",end="")
+    print("Enter src vertex: ", end="")
     src = int(input())
 
-    print("Enter target vertex: ",end="")
+    print("Enter target vertex: ", end="")
     target = int(input())
 
-    print("Enter maxDepth: ",end="")
+    print("Enter maxDepth: ", end="")
     maxDepth = int(input())
 
-    if g.iterativeSearch(src,target,maxDepth):
+    if g.iterativeSearch(src target, maxDepth):
         print("Can reach :D")
     else:
         print("Cannot reach :'(")
