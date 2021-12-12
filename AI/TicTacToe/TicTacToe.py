@@ -1,123 +1,136 @@
-import numpy
+from os import system, name
 
-board = numpy.zeros((3, 3))
+board = [' ' for t in range(10)]
 
-for i in range(1, 4):
-    for j in range(1, 4):
-        board[i - 1][j - 1] = str(i * 10 + j)
+def inputLetter(letter, pos):
+    board[pos] = letter
 
-# [[11. 12. 13.]
-#  [21. 22. 23.]
-#  [31. 32. 33.]]
+def freespace(pos):
+    return board[pos] == ' '
 
-def checkWin(position, x):
-    row, col = position
-
-    win = numpy.array([x, x, x])
-
-    # check row
-    if (board[row - 1] == win).all():
-        return [1, x]
-
-    # check col
-    if ([board[0][col - 1], board[1][col - 1], board[2][col - 1]] == win).all():
-        return [1, x]
-
-    # check diag
-    if [row, col] in [[0, 0], [0, 2], [1, 1], [2, 0], [2, 2]]:
-
-        # check \ diag
-        if ([board[0, 0], board[1, 1], board[2, 2]] == win).all():
-            return [1, x]
-
-        # check / diag
-        if ([board[0, 2], board[1, 1], board[2, 0]] == win).all():
-            return [1, x]
-
-    return [0, x]
-
-def inputPosition(x):
-    while True:
-        pos = int(input("Position:"))
-
-        col = int(pos % 10)
-        pos = pos / 10
-        row = int(pos % 10)
-
-        if board[row - 1][col - 1] not in [0, 1]:
-            board[row - 1][col - 1] = x
-            return [row, col]
-
-        else:
-            print("Choose an empty position!")
-
-def AIinputPosition(x):
-    # check if theres a slot to win
-    for row in range(1, 4):
-        for col in range(1, 4):
-            if board[row - 1][col - 1] not in [0, 1]:
-                temp = board[row - 1][col - 1]
-                board[row - 1][col - 1] = 0
-
-                if checkWin([row, col], 0) == [1, 0]:
-                    return [row, col]
-                else:
-                    board[row - 1][col - 1] = temp
-
-    # check if there's a slot for the human to win
-    for row in range(1, 4):
-        for col in range(1, 4):
-            if board[row - 1][col - 1] not in [0, 1]:
-                temp = board[row - 1][col - 1]
-                board[row - 1][col - 1] = 1
-
-                if checkWin([row, col], 1) == [1, 1]:
-                    board[row - 1][col - 1] = 0
-                    return [row, col]
-                else:
-                    board[row - 1][col - 1] = temp
-
-    # put it in a corner lol
-    for [row, col] in [[0, 0], [0, 2], [1, 0], [1, 2], [2, 0], [2, 2]]:
-        if board[row - 1][col - 1] not in [0, 1]:
-            board[row - 1][col - 1] = 0
-            return [row, col]
-
-    # check for center
-    for [row, col] in [1, 1]:
-        if board[row - 1][col - 1] not in [0, 1]:
-            board[row - 1][col - 1] = 0
-            return [row, col]
-
-    # put wherever empty rip
-    for row in range(1, 4):
-        for col in range(1, 4):
-            if board[row - 1][col - 1] not in [0, 1]:
-                board[row - 1][col - 1] = 0
-                return [row, col]
-
-for j in range(1, 10):
-    i = j % 2
-    print(board)
-    # AI - 0
-    # HUMAN - 1
-
-    if i == 1:
-        print("\nHUMAN")
-        position = inputPosition(i)
+def drawBoard(board):
+    if name == 'nt':
+        _ = system('cls')
     else:
-        print("\nAI")
-        position = AIinputPosition(i)
+        _ = system('clear')
 
-    hasWon = checkWin(position, i)
+    print('   |   |')
+    print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
+    print('   |   |')
+    print('-----------')
+    print('   |   |')
+    print(' ' + board[4] + ' | ' + board[5] + ' | ' + board[6])
+    print('   |   |')
+    print('-----------')
+    print('   |   |')
+    print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
+    print('   |   |')
 
-    if hasWon[0] == 1:
-        print(board)
-        if hasWon[1] == 1:
-            print("HUMAN WINS!! WOOHOOO!!!")
+def isWinner(bo, le):
+    return ((bo[7] == le and bo[8] == le and bo[9] == le) or
+            (bo[4] == le and bo[5] == le and bo[6] == le) or
+            (bo[1] == le and bo[2] == le and bo[3] == le) or
+            (bo[1] == le and bo[4] == le and bo[7] == le) or
+            (bo[2] == le and bo[5] == le and bo[8] == le) or
+            (bo[3] == le and bo[6] == le and bo[9] == le) or
+            (bo[1] == le and bo[5] == le and bo[9] == le) or
+            (bo[3] == le and bo[5] == le and bo[7] == le))
+
+def playerMove():
+    run = True
+    while run:
+        move = input('Select a position (1-9): ')
+        print("Computer is 'O'")
+        try:
+            move = int(move)
+            if move > 0 and move < 10:
+                if freespace(move):
+                    run = False
+                    inputLetter('X', move)
+                else:
+                    print('This space is occupied')
+            else:
+                print('Select a number within 1-9')
+        except:
+            print('Enter a number yo :/')
+
+def compMove():
+    possibleMoves = [t for t, letter in enumerate(
+        board) if letter == ' ' and t != 0]
+    move = 0
+
+    for let in ['O', 'X']:
+        for i in possibleMoves:
+            boardCopy = board[:]
+            boardCopy[i] = let
+            if isWinner(boardCopy, let):
+                move = i
+                return move
+
+    corners = []
+    for i in possibleMoves:
+        if i in [1, 3, 7, 9]:
+            corners.append(i)
+
+    if len(corners) > 0:
+        move = selectRandom(corners)
+        return move
+
+    if 5 in possibleMoves:
+        move = 5
+        return move
+
+    midedges = []
+    for i in possibleMoves:
+        if i in [2, 4, 6, 8]:
+            midedges.append(i)
+
+    if len(midedges) > 0:
+        move = selectRandom(midedges)
+
+    return move
+
+
+def selectRandom(li):
+    import random
+    ln = len(li)
+    r = random.randrange(0, ln)
+    return li[r]
+
+def isBoardFull(board):
+    if board.count(' ') > 1:
+        return False
+    else:
+        return True
+
+def main():
+    drawBoard(board)
+
+    while not(isBoardFull(board)):
+        if not(isWinner(board, 'O')):
+            playerMove()
+            drawBoard(board)
         else:
-            print("AI WINS. WHAT A BUMMER...")
-        exit(1)
+            print('AGENT WON. DAMN IT... :(')
+            break
 
-print("DRAW LMAO")
-exit(1)
+        if not(isWinner(board, 'X')):
+            move = compMove()
+            if move == 0:
+                print('DRAW LMAO')
+            else:
+                inputLetter('O', move)
+                print('AGENT PLACED AT POSITION', move, ':')
+                drawBoard(board)
+        else:
+            print('YOU WON IT! GOOD JOB!! :D')
+            break
+
+while True:
+    a = input('Play OR Meh? (Y/N)')
+    if a.lower() == 'y':
+        board = [' ' for t in range(10)]
+        print('-----------------------------------')
+        main()
+    else:
+        break
