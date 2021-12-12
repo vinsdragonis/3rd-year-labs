@@ -36,7 +36,6 @@ def checkWin(position, x):
 
     return [0, x]
 
-
 def inputPosition(x):
     while True:
         pos = int(input("Position:"))
@@ -51,7 +50,6 @@ def inputPosition(x):
 
         else:
             print("Choose an empty position!")
-
 
 def AIinputPosition(x):
     # check if theres a slot to win
@@ -98,7 +96,6 @@ def AIinputPosition(x):
                 board[row - 1][col - 1] = 0
                 return [row, col]
 
-
 for j in range(1, 10):
     i = j % 2
     print(board)
@@ -121,7 +118,6 @@ for j in range(1, 10):
         else:
             print("AI WINS. WHAT A BUMMER...")
         exit(1)
-
 
 print("DRAW LMAO")
 exit(1)
