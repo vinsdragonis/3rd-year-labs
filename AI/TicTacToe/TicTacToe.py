@@ -10,7 +10,6 @@ for i in range(1, 4):
 #  [21. 22. 23.]
 #  [31. 32. 33.]]
 
-
 def checkWin(position, x):
     row, col = position
 
