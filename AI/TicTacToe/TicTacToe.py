@@ -40,7 +40,7 @@ def playerMove():
     run = True
     while run:
         move = input('Select a position (1-9): ')
-        print("Computer is 'O'")
+        print("Agent is 'O'")
         try:
             move = int(move)
             if move > 0 and move < 10:
@@ -55,7 +55,8 @@ def playerMove():
             print('Enter a number yo :/')
 
 def compMove():
-    possibleMoves = [t for t, letter in enumerate(board) if letter == ' ' and t != 0]
+    possibleMoves = [t for t, letter in enumerate(
+        board) if letter == ' ' and t != 0]
     move = 0
 
     for let in ['O', 'X']:
@@ -110,7 +111,7 @@ def main():
             playerMove()
             drawBoard(board)
         else:
-            print('AGENT WON. DAMN IT... :(')
+            print('AGENT WON. DAMN... :(')
             break
 
         if not(isWinner(board, 'X')):
