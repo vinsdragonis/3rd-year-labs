@@ -55,8 +55,7 @@ def playerMove():
             print('Enter a number yo :/')
 
 def compMove():
-    possibleMoves = [t for t, letter in enumerate(
-        board) if letter == ' ' and t != 0]
+    possibleMoves = [t for t, letter in enumerate(board) if letter == ' ' and t != 0]
     move = 0
 
     for let in ['O', 'X']:
