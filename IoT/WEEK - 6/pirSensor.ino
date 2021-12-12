@@ -4,7 +4,6 @@ boolean lockLOW = true, takeLOWTime;
 const int pirPIN = 9, ledPIN = 13;
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(9600);
   pinMode(pirPIN, INPUT);
   pinMode(ledPIN, OUTPUT);
@@ -23,7 +22,6 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   if (digitalRead(pirPIN) == HIGH) {
     digitalWrite(ledPIN, HIGH);
 
