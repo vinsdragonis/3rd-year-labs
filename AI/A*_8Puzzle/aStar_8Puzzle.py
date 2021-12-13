@@ -1,6 +1,6 @@
 def print_grid(src):  # print the grid
     state = src.copy()
-    state[state.index(-1)] = ' '
+    state[state.index(-1)] = '_'
     print(
         f"""
 		{state[0]} {state[1]} {state[2]}
