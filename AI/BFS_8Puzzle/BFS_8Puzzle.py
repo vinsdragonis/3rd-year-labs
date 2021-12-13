@@ -1,96 +1,81 @@
-def h(state):
-    res = 0
-    for i in range(1, 9):
-        if state.index(i) != target.index(i):
-            res += 1
-    return res
+def print_grid(matrix):
+    state = matrix.copy()
+    state[state.index(-1)] = "_"
+    print(
+        f"""
+        {state[0]} {state[1]} {state[2]}
+        {state[3]} {state[4]} {state[5]}
+        {state[6]} {state[7]} {state[8]}
+        """
+    )
 
 
-def gen(state, m, b):
-    temp = state[:]
-    if m == "l":
-        temp[b], temp[b - 1] = temp[b - 1], temp[b]
-    if m == "r":
-        temp[b], temp[b + 1] = temp[b + 1], temp[b]
-    if m == "u":
-        temp[b], temp[b - 3] = temp[b - 3], temp[b]
-    if m == "d":
-        temp[b], temp[b + 3] = temp[b + 3], temp[b]
-    return temp
+def gen(state, b, d):
+    x = []
+    for i in d:
+        temp = state.copy()
+        if i == "up":
+            temp[b-3], temp[b] = temp[b], temp[b-3]
+        elif i == "down":
+            temp[b+3], temp[b] = temp[b], temp[b+3]
+        elif i == "right":
+            temp[b+1], temp[b] = temp[b], temp[b+1]
+        elif i == "left":
+            temp[b-1], temp[b] = temp[b], temp[b-1]
+        x.append(temp)
+    return x
+
+
+def bfs(src, target):
+    frontier = [src]
+    visited_states = set()
+    while len(frontier):
+        state = frontier.pop(0)
+        print_grid(state)
+        visited_states.add(tuple(state))
+        if(state == target):
+            print("Success")
+            return
+        else:
+            for move in possible_moves(state, visited_states):
+                if move not in frontier:
+                    frontier.append(move)
+    print("Fail")
 
 
 def possible_moves(state, visited_states):
     b = state.index(-1)
     d = []
-    pos_moves = []
-    if b <= 5:
-        d.append("d")
-    if b >= 3:
-        d.append("u")
-    if b % 3 > 0:
-        d.append("l")
-    if b % 3 < 2:
-        d.append("r")
-    for i in d:
-        temp = gen(state, i, b)
-        if not temp in visited_states:
-            pos_moves.append(temp)
-    return pos_moves
+    if b not in (0, 1, 2):
+        d.append("up")
+    if b not in (6, 7, 8):
+        d.append("down")
+    if b not in (0, 3, 6):
+        d.append("left")
+    if b not in (2, 5, 8):
+        d.append("right")
+    return [move for move in gen(state, b, d) if tuple(move) not in visited_states]
 
 
-def search(src, target, visited_states, g):
-    if src == target:
-        return visited_states
-    visited_states.append(src),
-    adj = possible_moves(src, visited_states)
-    scores = []
-    selected_moves = []
-    for move in adj:
-        scores.append(h(move) + g)
-    min_score = min(scores)
-    for i in range(len(adj)):
-        if scores[i] == min_score:
-            selected_moves.append(adj[i])
-    for move in selected_moves:
-        if search(move, target, visited_states, g + 1):
-            return visited_states
-    return 0
-
-
-def solve(src, target):
-    visited_states = []
-    res = search(src, target, visited_states, 0)
-
-    if type(res) != type(int()):
-        i = 0
-        for state in res:
-            display(state)
-            i += 1
-        display(target)
-        print("Total moves made: ", i + 1)
-
-
-def display(state):
-    for i in range(9):
-        if i % 3 == 0:
-            print()
-        if state[i] == -1:
-            print(state[i], end="\t")
+def bfs(src, target):
+    frontier = [src]
+    visited_states = set()
+    while len(frontier):
+        state = frontier.pop(0)
+        print_grid(state)
+        visited_states.add(tuple(state))
+        if(state == target):
+            print("Success")
+            return
         else:
-            print(state[i], end="\t")
-    print(end="\n")
+            for move in possible_moves(state, visited_states):
+                if move not in frontier:
+                    frontier.append(move)
+    print("Fail")
 
 
-# define source and target states
-src = [1, 2, 3, -1, 4, 5, 6, 7, 8]
-target = [1, 2, 3, 4, 5, 8, -1, 6, 7]
+src = [1, 2, 5, -1, 3, 4, 6, 7, 8]
+target = [-1, 1, 2, 3, 4, 5, 6, 7, 8]
 
-print("A* method to solve 8 Puzzle")
 
-print("Source State: ")
-display(src)
-print("Target State: ")
-display(target)
-print("Solving using A*: ")
-
-solve(src, target)
+bfs(src, target)
