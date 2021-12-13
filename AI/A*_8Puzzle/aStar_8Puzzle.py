@@ -1,117 +1,79 @@
-import time
-import colorama
-from colorama import Fore, Style
-
-# 8 Puzzle's problem using A* search with manhattan distance
-
-class Node:
-    def __init__(self, data, level, fval):
-        self.data = data
-        self.level = level
-        self.fval = fval
-
-    def generate_chid(self):
-        x, y = self.find(self.data, '_')
-        val = [[x, y-1], [x, y+1], [x-1, y], [x+1, y]]
-        children = []
-        for i in val:
-            child = self.shuffle(self.data, x, y, i[0], i[1])
-            if child is not None:
-                child_node = Node(child, self.level+1, 0)
-                children.append(child_node)
-        return children
-
-    def find(self, puz, x):
-        for i, row in enumerate(puz):
-            for j, col in enumerate(row):
-                if col == x:
-                    return i, j
-
-    def shuffle(self, puz, x, y, xf, yf):
-        if(xf >= 0 and xf < len(puz) and yf >= 0 and yf < len(puz)):
-            temp_puz = []
-            temp_puz = self.copy(puz)
-            temp = temp_puz[xf][yf]
-            temp_puz[xf][yf] = puz[x][y]
-            temp_puz[x][y] = temp
-            return temp_puz
-        else:
-            return None
-
-    def copy(self, puz):
-        temp = []
-        for i in puz:
-            t = []
-            for j in i:
-                t.append(j)
-            temp.append(t)
-        return temp
+def print_grid(src):  # print the grid
+    state = src.copy()
+    state[state.index(-1)] = '_'
+    print(
+        f"""
+		{state[0]} {state[1]} {state[2]}
+		{state[3]} {state[4]} {state[5]}
+		{state[6]} {state[7]} {state[8]}
+        """
+    )
 
 
-class Puzzle:
-    def __init__(self, size):
-        self.n = size
-        self.open = []
-        self.closed = []
+def h(state, target):
+    #Manhattan distance
+    dist = 0
+    for i in state:
+        d1, d2 = state.index(i), target.index(i)
+        x1, y1 = d1 % 3, d1 // 3
+        x2, y2 = d2 % 3, d2 // 3
+        dist += abs(x1-x2) + abs(y1-y2)
+    return dist
 
-    def accept(self):
-        inpMatrix = []
-        for i in range(0, self.n):
-            temp = input().split(" ")
-            inpMatrix.append(temp)
-        return inpMatrix
 
-    def f(self, start, goal):
-        return self.h(start.data, goal)+start.level
+def astar(src, target):  # a* algo
+    states = [src]
+    g = 0
+    visited_states = set()
+    while len(states):
+        print(f"Level: {g}")
+        moves = []
+        for state in states:
+            visited_states.add(tuple(state))
+            print_grid(state)
+            if state == target:
+                print("Success")
+                return
+            moves += [move for move in possible_moves(
+                state, visited_states) if move not in moves]
+        costs = [g + h(move, target) for move in moves]  # fn=gn+hn
+        states = [moves[i]
+                  for i in range(len(moves)) if costs[i] == min(costs)]  # min cost
+        g += 1
+    print("Fail")
 
-    def h(self, start, goal):
-        t = 0
-        for i, row in enumerate(start):
-            for j, col in enumerate(row):
-                if(col != goal[i][j] and col != '_'):
-                    t += 1
-        return t
 
-    def printMat(self, cur, count):
+def possible_moves(state, visited_states):
+    b = state.index(-1)
+    d = []
+    if 9 > b - 3 >= 0:
+        d += 'u'
+    if 9 > b + 3 >= 0:
+        d += 'd'
+    if b not in [2, 5, 8]:
+        d += 'r'
+    if b not in [0, 3, 6]:
+        d += 'l'
+    pos_moves = []
+    for move in d:
+        pos_moves.append(gen(state, move, b))
+    return [move for move in pos_moves if tuple(move) not in visited_states]
 
-        print("\033c", end="")
-        print(Fore.GREEN + "8-puzzle Problem using Heuristic Search and Manhattan distance\n" + Fore.RESET)
-        for i in cur.data:
-            for j in i:
-                if j == '_':
-                    print(Fore.CYAN + '█' + Fore.RESET, end=' ')
-                else:
-                    print(j, end=" ")
-            print("")
-        print("\nTotal moves : " + Fore.YELLOW +
-              str(count) + Fore.RESET + '\n')
 
-    def process(self):
-        print("Enter the starting state matrix ")
-        start = self.accept()
-        print("Enter the goal state matrix ")
-        goal = self.accept()
-        start = Node(start, 0, 0)
-        start.fval = self.f(start, goal)
-        self.open.append(start)
-        moves = 0
-        while(True):
-            cur = self.open[0]
-            self.printMat(cur, moves)
+def gen(state, direction, b):
+    temp = state.copy()
+    if direction == 'u':
+        temp[b-3], temp[b] = temp[b], temp[b-3]
+    if direction == 'd':
+        temp[b+3], temp[b] = temp[b], temp[b+3]
+    if direction == 'r':
+        temp[b+1], temp[b] = temp[b], temp[b+1]
+    if direction == 'l':
+        temp[b-1], temp[b] = temp[b], temp[b-1]
+    return temp
 
-            if(self.h(cur.data, goal) == 0):
-                break
 
-            for i in cur.generate_chid():
-                i.fval = self.f(i, goal)
-                self.open.append(i)
+src = [1, 2, 5, 3, 4, -1, 6, 7, 8]
+target = [-1, 1, 2, 3, 4, 5, 6, 7, 8]
 
-            self.closed.append(cur)
-            del self.open[0]
-
-            self.open.sort(key=lambda x: x.fval, reverse=False)
-            moves += 1
-            time.sleep(1)
-
-puz = Puzzle(3)
-puz.process()
+astar(src, target)
