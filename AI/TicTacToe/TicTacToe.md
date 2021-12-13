@@ -18,14 +18,15 @@ The board is represented as a **3 x 3 matrix**, where **O** is placed by the *AI
     function compMove():
         if board has empty corners:
             set empty corner to O
-            return position
+            return move
 
         if board has empty center:
             set middle to O
+            return move
             
         if board has empty mid slot:
             set empty mid slot to O
-            return position
+            return move
             
 ## Utility Functions
 
