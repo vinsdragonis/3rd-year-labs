@@ -1,52 +1,58 @@
-from collections import defaultdict
-
-
-class Graph:
-    def __init__(self, vertices):
-        self.V = vertices
-        self.graph = defaultdict(list)
-
-    def addEdge(self, u, v):
-        self.graph[u].append(v)
-
-    def DLS(self, src, target, limit):
-
-        if(src == target):
+def dfs(src, target, limit, visited_states):
+    if src == target:
+        return True
+    if limit <= 0:
+        return False
+    visited_states.append(src)
+    moves = possible_moves(src, visited_states)
+    for move in moves:
+        if dfs(move, target, limit-1, visited_states):
             return True
-
-        if(limit <= 0):
-            return False
-
-        for i in self.graph[src]:
-            if(self.DLS(i, target, limit-1)):
-                return True
-
-        return False
-
-    def IDDFS(self, src, target, limit):
-        for i in range(limit):
-            if(self.DLS(src, target, i)):
-                return True
-        return False
+    return False
 
 
-k = 7
-g = Graph(int(k))
-for i in range(int(k)-1):
-    g.addEdge(0,1)
-    g.addEdge(0,2)
-    g.addEdge(1,3)
-    g.addEdge(1,4)
-    g.addEdge(2,5)
-    g.addEdge(2,6)
+def possible_moves(state, visited_states):
+    b = state.index(-1)
+    d = []
+    if b not in [0, 1, 2]:
+        d += 'u'
+    if b not in [6, 7, 8]:
+        d += 'd'
+    if b not in [2, 5, 8]:
+        d += 'r'
+    if b not in [0, 3, 6]:
+        d += 'l'
+    pos_moves = []
+    for move in d:
+        pos_moves.append(gen(state, move, b))
+    return [move for move in pos_moves if move not in visited_states]
 
-target = 6
-maxDepth = 3
-src = 0
 
-if g.IDDFS(int(src), int(target), int(maxDepth)) == True:
-    print("Target is reachable from source " +
-          "within the given max depth")
-else:
-    print("Target is NOT reachable from source " +
-          "within the given max depth!")
+def gen(state, move, blank):
+    temp = state.copy()
+    if move == 'u':
+        temp[blank-3], temp[blank] = temp[blank], temp[blank-3]
+    if move == 'd':
+        temp[blank+3], temp[blank] = temp[blank], temp[blank+3]
+    if move == 'r':
+        temp[blank+1], temp[blank] = temp[blank], temp[blank+1]
+    if move == 'l':
+        temp[blank-1], temp[blank] = temp[blank], temp[blank-1]
+    return temp
+
+
+def iddfs(src, target, depth):
+    for i in range(depth):
+        visited_states = []
+        if dfs(src, target, i+1, visited_states):
+            print(True)
+            return
+    print(False)
+
+
+# Test 2
+src = [1, 2, 3, -1, 4, 5, 6, 7, 8]
+target = [1, 2, 3, 6, 4, 5, -1, 7, 8]
+
+depth = 1
+iddfs(src, target, depth)
