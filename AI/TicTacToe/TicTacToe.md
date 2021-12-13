@@ -2,7 +2,7 @@
 
 ## Objective
 
-Given a **3 x 3** board, the goal is to *create an agent that places* a **O** for every **X** that *the player places* so as to **prevent the user from forming a sequence of
+Given a **3 x 3** board, the goal is to *create an agent that places* an **O** for every **X** that *the player places* so as to **prevent the user from forming a sequence of
 *three* consecutive X(s)**, all the while trying to achieve a sequence ***three* consecutive O(s)**.
 
 ## Notation
