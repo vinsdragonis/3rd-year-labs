@@ -17,7 +17,7 @@ floor = [[1, 0, 0, 0],
 ## Algorithm
 ```
 function CLEAN(floor, startRow, startCol):
-    goRight = Tru
+    goRight = True
     i = startRow, j = startCol
     while the floor is not clean:
         currentTile = floor[i][j]
