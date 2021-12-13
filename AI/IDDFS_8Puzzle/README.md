@@ -3,7 +3,7 @@
 ## Objective
 
 Given a **3 x 3** grid, the aim is to create an agent to *solve the puzzle* by moving the tiles **vertically or horizontally** until it reaches the **goal state** using
-**BFS algorithm**.
+**IDDFS algorithm**.
 
 ## Notation
 

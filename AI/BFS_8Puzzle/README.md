@@ -15,7 +15,7 @@ The grid is represented as a **3 x 3 matrix**, where there are 8 tiles numbered 
 
 ## Logic
 
-All possible moves are computed by **brute force** technique, and the search function checks breadth-wise which is the most suitable move
+All possible moves are computed by **BFS** technique, and the search function checks breadth-wise which is the most suitable move
 
     function bfs(src, target):
         frontier = src
