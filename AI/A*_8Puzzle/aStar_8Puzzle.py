@@ -40,7 +40,7 @@ def astar(src, target):  # a* algo
         states = [moves[i]
                   for i in range(len(moves)) if costs[i] == min(costs)]  # min cost
         g += 1
-    print("Fail")
+    print("No success")
 
 
 def possible_moves(state, visited_states):
