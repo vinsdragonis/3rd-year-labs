@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🤖 Artificial Intelligence</h1>
+  <h1>Artificial Intelligence 🤖</h1>
 </div>
 
 ### List of programs:
