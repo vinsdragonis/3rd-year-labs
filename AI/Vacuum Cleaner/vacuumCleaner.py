@@ -1,71 +1,45 @@
-import random
+def notClean(floor):
+    for row in floor:
+        if 1 in row:
+            return True
+    return False
 
-# assumed initial state
-environment = {"A": 0, "B": 0}
 
+def clean(floor, i, j):
+    goRight = True
 
-def checkDirt():
-    return random.randint(0, 1)
-
-def setEnvironment():
-    environment["A"] = checkDirt()
-    environment["B"] = checkDirt()
-
-    print("\nNew environment: ", end="")
-    print(environment)
-
-def cleaned():
-    print("\nBoth the locations are cleaned.")
-    exit(0)
-
-def newState():
-    setEnvironment()
-
-    if environment["A"] == 0 and environment["B"] == 0:
-        cleaned()
-    else:
-        if environment["A"]:
-            cleanAt(1)
+    while notClean(floor):
+        # Print Floor
+        print_floor(floor, i, j)
+        # Clean
+        if floor[i][j]:
+            floor[i][j] = 0
+        # Decide Direction and Move (Zig-Zag)
+        if j == len(floor[i])-1 and goRight:
+            i, right = (i + 1) % len(floor), False
+            continue
+        elif j == 0 and not goRight:
+            i, right = (i + 1) % len(floor), True
+            continue
         else:
-            cleanAt(0)
+            j = j + 1 if goRight else j - 1
 
-def cleanAt(state):
-    if state == 1:
-        print("\nVacuum cleaner at A location.")
-        dirt = environment["A"]  # 0-nodirt 1-dirt
+    # Cleaned Floor
+    print_floor(floor, -1, -1)
 
-        if dirt == 1:
-            print("Location A is dirty.")
-            print("Vacuum cleaner cleaned the dirt at A.")
-            environment["A"] = 0
-        else:
-            print("Location A is clean.")
 
-        if environment["B"]:
-            print("Vacuum cleaner moving to B location.")
-            cleanAt(0)
+def print_floor(floor, curr_row, curr_col):
+    for row in range(len(floor)):
+        for col in range(len(floor[row])):
+            if (curr_row, curr_col) == (row, col):
+                print(" >", floor[row][col], "< ", end='', sep='')
+            else:
+                print("  ", floor[row][col], "  ", end='', sep='')
+        print()
+    print()
 
-    else:
-        print("\nVacuum cleaner at B location.")
-        dirt = environment["B"]  # 0-nodirt 1-dirt
 
-        if dirt == 1:
-            print("Location B is dirty.")
-            print("Vacuum cleaner cleaned the dirt at B.")
-            environment["B"] = 0
-        else:
-            print("Location B is clean.")
+floor = [[1, 0],
+        [0, 1]]
 
-        if environment["A"]:
-            print("Vacuum cleaner moving to A location.")
-            cleanAt(1)
-
-    print("\nCurrent environment: ", end="")
-    print(environment)
-    newState()
-
-def start():
-    newState()
-
-if __name__ == "__main__":
-    start()
+clean(floor, 0, 0)
