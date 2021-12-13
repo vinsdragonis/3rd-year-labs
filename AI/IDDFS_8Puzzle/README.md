@@ -35,7 +35,7 @@ All possible moves are computed by **IDDFS** technique, and we search **if the t
 	
 ### IDDFS
 
-	iddfs(src, target, depth):
+	function iddfs(src, target, depth):
 		for i in range(depth):
 			visited_states = []
 			if dfs(src, target, i+1, visited_states):
