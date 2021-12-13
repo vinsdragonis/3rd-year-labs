@@ -57,23 +57,6 @@ def possible_moves(state, visited_states):
     return [move for move in gen(state, b, d) if tuple(move) not in visited_states]
 
 
-def bfs(src, target):
-    frontier = [src]
-    visited_states = set()
-    while len(frontier):
-        state = frontier.pop(0)
-        print_grid(state)
-        visited_states.add(tuple(state))
-        if(state == target):
-            print("Success")
-            return
-        else:
-            for move in possible_moves(state, visited_states):
-                if move not in frontier:
-                    frontier.append(move)
-    print("Fail")
-
-
 src = [1, 2, 5, -1, 3, 4, 6, 7, 8]
 target = [-1, 1, 2, 3, 4, 5, 6, 7, 8]
 
