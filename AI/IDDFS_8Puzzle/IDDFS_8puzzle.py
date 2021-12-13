@@ -50,7 +50,6 @@ def iddfs(src, target, depth):
     print(False)
 
 
-# Test 2
 src = [1, 2, 3, -1, 4, 5, 6, 7, 8]
 target = [1, 2, 3, 6, 4, 5, -1, 7, 8]
 
