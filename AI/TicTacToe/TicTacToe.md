@@ -27,7 +27,7 @@ The board is represented as a **3 x 3 matrix**, where **O** is placed by the *AI
             set empty mid slot to O
             return position
             
-### Utility Functions
+## Utility Functions
 
 1. `compMove()` - Checks for an empty slot and places a **0** accordingly
 2. `isWinner(board, letter)` - Checks for **three** consecutive **O(s)** or **X(s)** *vertically, horizontally, or diagonally*
