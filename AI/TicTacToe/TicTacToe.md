@@ -15,6 +15,8 @@ The board is represented as a **3 x 3 matrix**, where **O** is placed by the *AI
 
 ## Logic
 
+The successive moves are computed by **brute force** technique
+
     function compMove():
         if board has empty corners:
             set empty corner to O
