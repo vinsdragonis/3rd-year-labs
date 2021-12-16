@@ -10,7 +10,7 @@ void loop() {
 
   delay(30);
 
-  for (int i = 255; i >= 0; i-)
+  for (int i = 255; i >= 0; i--)
     analogWrite(pin, i);
 
   delay(30);
