@@ -1,6 +1,6 @@
 <div align="center">
   <h1> 3<sup>rd</sup> Year Lab Programs </h1>
-  <strong>B V Vineeth - 1BM19CS033</strong><br>
+  <strong><a href="https://github.com/vinsdragonis">B V Vineeth</a> - 1BM19CS033</strong><br>
   💻 5<sup>th</sup> and 6<sup>th</sup> semester lab programs
 </div>
 
