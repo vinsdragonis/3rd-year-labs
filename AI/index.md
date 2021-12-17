@@ -16,4 +16,4 @@
 
 <a target="blank" href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/AI">Go to folder 📂</a>
 
-<a href="https://vinsdragonis.github.io/3rd-year-labs/">Back</a>
+<a href="https://vinsdragonis.github.io/3rd-year-labs/">Back ⬅</a>
