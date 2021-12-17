@@ -63,4 +63,7 @@
   </ol>
 </div>
 
-<a href="https://vinsdragonis.github.io/3rd-year-labs/">Back</a>
+
+<a target="blank" href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/IoT">Go to folder 📂</a>
+
+<a href="https://vinsdragonis.github.io/3rd-year-labs/">Back ⬅</a>
