@@ -11,6 +11,7 @@
     <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/AI/IDDFS_8Puzzle">8 Puzzle (IDDFS)</a></li>
     <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/AI/A*_8Puzzle">8 Puzzle (A*)</a></li>
     <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/AI/Vacuum%20Cleaner">Vacuum Cleaner agent</a></li>
+    <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/AI/Knowledge%20Base%20Entailment">Knowledge Base Entailment</a></li>
   </ol>
 </div>
 
