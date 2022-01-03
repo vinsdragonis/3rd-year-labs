@@ -7,32 +7,34 @@ Given a knowledge-base using **propositional logic**, prove the given query usin
 ## Notation
 
     variables = [p, q, r]
+    symbols/operators = [
+        NOT: ~
+        OR: v
+        AND: ^
+    ]
 
 ## Logic
 
-The successive moves are computed by **brute force** technique
+In resolution, we are given a **knowledge base** and a **query**. We test to see if *the given knowledge base enatils the given query*.
 
-    function compMove():
-        if board has empty corners:
-            set empty corner to O
-            return move
-
-        if board has empty center:
-            set middle to O
-            return move
-            
-        if board has empty mid slot:
-            set empty mid slot to O
-            return move
+    function entailment():
+        for comb in combinations:
+            s = evaluatePostfix(toPostfix(kb), comb)
+            f = evaluatePostfix(toPostfix(q), comb)
+            if s and not f:
+                return False
+        return True
+        
             
 ## Utility Functions
 
-1. `compMove()` - Checks for an empty slot and places a **0** accordingly
-2. `isWinner(board, letter)` - Checks for **three** consecutive **O(s)** or **X(s)** *vertically, horizontally, or diagonally*
-3. `playerMove()` - Validates input position entered by the *player* and places a **X** if it is empty
-4. `drawBoard(board)` - Draws the board and prints the values in each postion
-5. `inputLetter(letter, position)` - Sets the value for the given position on the board
-6. `freespace(position)` - Checks if the given position is empty and returns the same to `playerMove()`
-7. `selectRandom(list)` - Computes the length of the given list and selects a random position within the given range
-8. `isBoardFull(board)` - Checks if all positions are used up
-9. `main()` - The main function where all functions are put together
+1. `CheckEntailment()` - Checks if the given **knowledge base** entails the given **query**
+2. `eval(i, a, b)` - Evaluates and returns **a ^ b** if the given operation is ***ANDing***, else returns **a v b**
+3. `isOperand(c)` - Checks if the given character is an operand or not
+4. `isLeftParanthesis(c)` - Checks if the given character is an **opening paranthesis**
+5. `isRightParanthesis(c)` - Checks if the given character is an **closing paranthesis**
+6. `isEmpty(stack)` - Checks if the stack is empty
+7. `peek(stack)` - Returns the top element in the stack
+8. `hasLessOrEqualPriority(c1, c2)` - Checks the operator and returns if the given operator is of lower, equal or higher priority
+9. `toPostfix(infix)` - Converts the given knowledge base and query to **postfix**
+10. `evaluatePostfix(exp, comb)` - Evaluates the given postfix expression
