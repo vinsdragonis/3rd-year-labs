@@ -9,7 +9,8 @@
 <div>
   <ol>
     <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/AI">Artificial Intelligence (AI)</a></li>
-    <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/IoT">Internet of Things (IoT)</a></li>
+    <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/CN">Computer Networks (CN)</a></li>
     <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/USP">Unix Shell Programming (USP)</a></li>
+    <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/IoT">Internet of Things (IoT)</a></li>
   </ol>
 </div>
