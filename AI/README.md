@@ -13,5 +13,6 @@
     <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/AI/Vacuum%20Cleaner">Vacuum Cleaner agent</a></li>
     <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/AI/Knowledge%20Base%20Entailment">Knowledge Base Entailment</a></li>
     <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/AI/Knowledge%20Base%20Resolution">Knowledge Base Resolution</a></li>
+    <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/AI/Knowledge%20Base%20Unification">Knowledge Base Unification</a></li>
   </ol>
 </div>
