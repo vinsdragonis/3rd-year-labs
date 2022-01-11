@@ -1,11 +1,13 @@
 import re
 
+
 def getAttributes(expr):
     expr = expr.split("(")[1:]
     expr = "(".join(expr)
     expr = expr[:-1]
     expr = re.split("(?<!\(.),(?!.\))", expr)
     return expr
+
 def getInitialPredicate(expr):
     return expr.split("(")[0]
 
@@ -42,6 +44,7 @@ def getRemainingPart(expr):
     attr = getAttributes(expr)
     newExpr = predicate + "(" + ",".join(attr[1:]) + ")"
     return newExpr
+
 def unify(exp1, exp2):
     if exp1 == exp2:
         return []
