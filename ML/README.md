@@ -6,6 +6,8 @@
 
 <div>
   <ol>
-    <li><a href="https://github.com/vinsdragonis/3rd-year-labs/blob/main/ML/Load%20Dataset/animeDataSet.ipynb">Loading a sample dataset (experimental)</a></li>
+    <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/ML/Load%20Dataset">Loading a sample dataset (experimental)</a></li>
+    <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/ML/01_FindS">Find S</a></li>
+    <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/ML/02_CandidateElimination">Candidate Elimination</a></li>
   </ol>
 </div>
