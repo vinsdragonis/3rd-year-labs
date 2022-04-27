@@ -14,3 +14,11 @@
     <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/IoT">Internet of Things (IoT)</a></li>
   </ol>
 </div>
+
+## 6<sup>th</sup> sem
+
+<div>
+  <ol>
+    <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/ML">Machine Learning (ML)</a></li>
+  </ol>
+</div>
