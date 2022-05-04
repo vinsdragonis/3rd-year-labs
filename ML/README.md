@@ -10,5 +10,6 @@
     <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/ML/01_FindS">Find S</a></li>
     <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/ML/02_CandidateElimination">Candidate Elimination</a></li>
     <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/ML/03_DecisionTree">Decision Tree</a></li>
+    <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/ML/04_NaiveBayesianClassifier">Naive Bayesian Classifier</a></li>
   </ol>
 </div>
