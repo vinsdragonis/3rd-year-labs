@@ -1,0 +1,9 @@
+
+# Linguist overrides
+
+*.md linguist-detectable=true
+*.md linguist-language=Text
+*.md linguist-documentation=false
+
+# README.md linguist-detectable=false
+# readme.md linguist-detectable=false
