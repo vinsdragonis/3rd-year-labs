@@ -20,5 +20,6 @@
 <div>
   <ol>
     <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/ML">Machine Learning (ML)</a></li>
+    <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/OOMD">Object Oriented Modelling and Design (OOMD)</a></li>
   </ol>
 </div>
