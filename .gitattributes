@@ -9,5 +9,9 @@
 *.md linguist-language=CSV
 *.md linguist-documentation=false
 
+*.md linguist-detectable=true
+*.md linguist-language=Markdown
+*.md linguist-documentation=false
+
 # README.md linguist-detectable=false
 # readme.md linguist-detectable=false
