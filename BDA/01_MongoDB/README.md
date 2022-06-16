@@ -18,11 +18,12 @@
 
         db.student.insert(
             {
-                _id:1,Name:"Vineeth",
+                _id:1,
+                Name:"Vineeth",
                 USN:"1BM19CS033",
                 Sem:6,
                 Dept:'CSE',
-                CGPA:7.5,
+                CGPA:7.8,
                 hobbies:["Skating","Gaming","Coding","Watch anime"]
             }
         );
@@ -31,7 +32,8 @@
 
         var myStudents = [
             {
-                _id:2,Name:"Jahnavi",
+                _id:2,
+                Name:"Jahnavi",
                 USN:"1BM19CS065",
                 Sem:6,
                 Dept:'CSE',
