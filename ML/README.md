@@ -15,6 +15,7 @@
     <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/ML/07_EM">EM algorithm</a>
     <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/ML/08_KMeans">K-Means</a>
     <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/ML/09_KNearest">K-Nearest Neighbours</a>
+    <li><a href="https://github.com/vinsdragonis/3rd-year-labs/tree/main/ML/10_WeightedRegression">Locally Weighted Linear Regression</a>
   </ol>
 </div>
 
